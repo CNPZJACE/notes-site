@@ -29,6 +29,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           repository: CNPZJACE/ObsidianVault
+          token: ${{ secrets.OBSIDIAN_TOKEN }}
           path: obsidian-vault
 
       - name: Copy Learn notes to Quartz
