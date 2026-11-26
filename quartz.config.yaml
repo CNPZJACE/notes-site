@@ -249,8 +249,8 @@ plugins:
       limit: 5
       linkToMore: false
     layout:
-      position: afterBody
-      priority: 10
+      position: right
+      priority: 20
 
   - source: "@quartz-community/spacer"
     enabled: true
