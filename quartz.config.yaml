@@ -285,7 +285,6 @@ plugins:
       includedProperties:
         - description
         - tags
-        - aliases
       excludedProperties: []
       hidePropertiesView: false
     order: 5
@@ -317,6 +316,15 @@ plugins:
 
 
 layout:
+
+  # fit（默认）会把侧边栏锁成一屏高、让组件互相挤压：
+  #   - 左栏文件树用 scrollIntoView 定位当前文件，因为不是独立滚动容器，
+  #     会把整个页面一起拖走（打开笔记就跳到中间，标题被切掉）
+  #   - 右栏「最近的笔记」被压到 160px，最后几条被截断
+  # 改成 scroll：两侧各自滚动，页面停在顶部。
+  sidebars:
+    left: scroll
+    right: scroll
 
   groups:
     toolbar:

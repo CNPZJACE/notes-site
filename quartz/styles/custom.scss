@@ -2,6 +2,14 @@
 
 // put your custom CSS here!
 
+// 正文开头重复的标题。Quartz 已经用 frontmatter 的 title 渲染了一个 h1.article-title，
+// 笔记正文里的第一个 H1 又是一样的内容，会上下各显示一次（页面上出现两遍标题）。
+// 隐藏正文里作为首元素的 H1，保留 article-title 那个 h1，页面只剩一个一级标题。
+.markdown-preview-view > .el-h1:first-child,
+.markdown-preview-view > h1:first-child {
+  display: none;
+}
+
 // 字体：theme.fontOrigin 设为 local 后不再请求 fonts.googleapis.com（原配置的三个
 // 拉丁占位字体在境内经常超时，还会阻塞首屏；中文本来也走系统回退）。
 // 这里显式给一套「系统 UI 字体 + 系统中文字体」的字栈，
@@ -21,4 +29,13 @@ $jc-mono: ui-monospace, "Cascadia Code", Consolas, "SF Mono", Menlo, Monaco, mon
   --font-text: var(--bodyFont);
   --font-monospace: var(--codeFont);
   --font-interface: var(--bodyFont);
+}
+
+// 左侧文件树在加载/切换笔记时会调用 scrollIntoView()（默认对齐到视口顶部）。
+// 侧栏内容不足一屏时，浏览器只能滚动整个文档来满足这个对齐，
+// 结果是一打开笔记就落在页面中间、标题被切掉。
+// 给当前项一个足够大的 scroll-margin-top：目标位置被推到 0 以上，滚动量被夹到 0，
+// 页面停在顶部（换页也统一回到顶部）。
+.explorer .active {
+  scroll-margin-top: 100vh;
 }
