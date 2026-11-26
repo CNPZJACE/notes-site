@@ -43,6 +43,7 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 24
+          cache: npm
 
       - name: Install dependencies
         run: npm ci
@@ -52,6 +53,15 @@ jobs:
 
       - name: Build Quartz
         run: npx quartz build
+
+      - name: Check output (no third-party fonts, robots.txt present)
+        run: |
+          if grep -rl "fonts.gstatic.com\|fonts.googleapis.com" public --include="*.html" | head -n 1; then
+            echo "::error::页面仍在请求 Google Fonts，检查 theme.fontOrigin / configuration.fonts.fontOrigin"
+            exit 1
+          fi
+          test -f public/robots.txt || { echo "::error::robots.txt 未生成"; exit 1; }
+          echo "OK: 无外部字体请求，robots.txt 已生成"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4

@@ -1,3 +1,6 @@
 @use "./variables.scss" as *;
 
 // put your custom CSS here!
+
+// 字体栈在 quartz.config.yaml 的 configuration.fonts 里统一配置
+// （fontOrigin: local + header/body/code），这里不需要再覆盖。

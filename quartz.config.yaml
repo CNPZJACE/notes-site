@@ -13,14 +13,24 @@ configuration:
   locale: zh-CN
   baseUrl: learn.pzjace.cn
 
+  # 字体全部走系统字体：不再向 fonts.googleapis.com 发请求。
+  # 原来配置的三个拉丁占位字体对中文零覆盖（中文本来就走系统回退），
+  # 但在境内这个外链经常超时，会阻塞首屏渲染。
+  # 这里同时关掉 theme 的外链和内置 fonts 插件的 Google Fonts 输出。
+  fonts:
+    fontOrigin: local
+    header: 'system-ui, -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", Roboto, Helvetica, Arial, sans-serif'
+    body: 'system-ui, -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", Roboto, Helvetica, Arial, sans-serif'
+    code: 'ui-monospace, "Cascadia Code", Consolas, "SF Mono", Menlo, Monaco, monospace'
+
   ignorePatterns:
     - private
     - templates
     - .obsidian
 
   theme:
-    fontOrigin: googleFonts
-    cdnCaching: true
+    fontOrigin: local
+    cdnCaching: false
 
     typography:
       header: Schibsted Grotesk
