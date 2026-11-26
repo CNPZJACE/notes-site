@@ -57,9 +57,7 @@ configuration:
     enableSiteMap: true
     enableRSS: true
 
-
 plugins:
-
   - source: "@quartz-community/created-modified-date"
     enabled: true
     options:
@@ -96,7 +94,6 @@ plugins:
     layout:
       position: right
       priority: 30
-      condition: not-index
 
   - source: "@quartz-community/description"
     enabled: true
@@ -159,12 +156,11 @@ plugins:
       position: left
       priority: 50
 
- - source: "@quartz-community/graph"
+  - source: "@quartz-community/graph"
     enabled: true
     layout:
       position: right
       priority: 10
-      condition: not-index
 
   - source: "@quartz-community/search"
     enabled: true
@@ -180,7 +176,6 @@ plugins:
     layout:
       position: right
       priority: 50
-      condition: not-index
 
   - source: "@quartz-community/article-title"
     enabled: true
@@ -300,9 +295,7 @@ plugins:
       priority: 50
       display: all
 
-
 layout:
-
   groups:
     toolbar:
       priority: 35
@@ -310,7 +303,6 @@ layout:
       gap: 0.5rem
 
   byPageType:
-
     "404":
       positions:
         beforeBody: []
