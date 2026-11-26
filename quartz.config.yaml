@@ -246,7 +246,11 @@ plugins:
   - source: "@quartz-community/recent-notes"
     enabled: true
     options:
+      title: "最近的笔记"
       limit: 5
+      showTags: false
+      hideTagPages: true
+      hideFolderPages: true
       linkToMore: false
     layout:
       position: right
