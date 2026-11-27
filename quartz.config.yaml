@@ -323,7 +323,7 @@ layout:
   #   - 右栏「最近的笔记」被压到 160px，最后几条被截断
   # 改成 scroll：两侧各自滚动，页面停在顶部。
   sidebars:
-    left: static
+    left: scroll
     right: scroll
 
   groups:

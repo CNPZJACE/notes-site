@@ -65,3 +65,36 @@ $jc-mono: ui-monospace, "Cascadia Code", Consolas, "SF Mono", Menlo, Monaco, mon
 
 // 注意：不要覆盖 explorer / folder-outer 的 height、overflow，
 // 折叠功能依赖它们；只放开 overscroll-behavior，让滚轮能传给页面。
+
+// 左栏固定悬浮 + 文件树在自身容器内滚动（正文不动）。
+// 插件默认把树容器压成几十像素高，这里让它撑满侧栏剩余高度。
+.sidebar.left .explorer {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sidebar.left .explorer-content {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: none !important;
+  overflow-y: auto;
+}
+
+.sidebar.left .explorer-ul {
+  max-height: none !important;
+}
+
+// 细分滚动条，避免看起来像整页滚动条
+.sidebar.left .explorer-content::-webkit-scrollbar {
+  width: 6px;
+}
+.sidebar.left .explorer-content::-webkit-scrollbar-thumb {
+  background: var(--lightgray);
+  border-radius: 3px;
+}
+.sidebar.left .explorer-content::-webkit-scrollbar-track {
+  background: transparent;
+}
