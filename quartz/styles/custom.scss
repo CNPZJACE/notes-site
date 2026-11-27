@@ -63,12 +63,5 @@ $jc-mono: ui-monospace, "Cascadia Code", Consolas, "SF Mono", Menlo, Monaco, mon
   overscroll-behavior: auto !important;
 }
 
-.sidebar.left .explorer,
-.sidebar.left .explorer-content,
-.sidebar.left .explorer-ul,
-.sidebar.left ul,
-.sidebar.left .folder-outer,
-.sidebar.left .content {
-  max-height: none !important;
-  overflow: visible !important;
-}
+// 注意：不要覆盖 explorer / folder-outer 的 height、overflow，
+// 折叠功能依赖它们；只放开 overscroll-behavior，让滚轮能传给页面。
