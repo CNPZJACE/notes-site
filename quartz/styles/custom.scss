@@ -54,3 +54,21 @@ $jc-mono: ui-monospace, "Cascadia Code", Consolas, "SF Mono", Menlo, Monaco, mon
   width: 0;
   height: 0;
 }
+
+// 左侧文件树：条目变多后，插件内部的滚动容器会把滚轮事件吞掉
+// （内容不溢出时滚不动，overscroll-behavior 又不让事件传给页面）。
+// 这里把左栏及其内部所有元素恢复成普通文档流，滚动统一交给页面处理。
+.sidebar.left,
+.sidebar.left * {
+  overscroll-behavior: auto !important;
+}
+
+.sidebar.left .explorer,
+.sidebar.left .explorer-content,
+.sidebar.left .explorer-ul,
+.sidebar.left ul,
+.sidebar.left .folder-outer,
+.sidebar.left .content {
+  max-height: none !important;
+  overflow: visible !important;
+}
