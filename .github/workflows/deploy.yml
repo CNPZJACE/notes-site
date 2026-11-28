@@ -57,6 +57,9 @@ jobs:
       - name: Build Quartz
         run: npx quartz build
 
+      - name: Vendor CDN assets (KaTeX / d3 / pixi)
+        run: node scripts/localize-cdn.mjs public
+
       - name: Place robots.txt at site root
         run: cp quartz/static/robots.txt public/robots.txt
 
@@ -67,8 +70,14 @@ jobs:
             grep -rl "fonts.gstatic.com" public --include="*.html" | head -n 5
             exit 1
           fi
+          # vendor 内第三方库自身的内部字符串（如 pixi 纹理转码器地址）不算页面请求，排除。
+          if grep -rq "cdn.jsdelivr.net" public --include="*.html" --include="*.js" --exclude-dir=vendor; then
+            echo "::error::仍有 jsdelivr 引用，检查 scripts/localize-cdn.mjs 的版本清单是否与插件输出一致"
+            grep -rl "cdn.jsdelivr.net" public --include="*.html" --include="*.js" --exclude-dir=vendor | head -n 5
+            exit 1
+          fi
           test -f public/robots.txt || { echo "::error::robots.txt 未生成"; exit 1; }
-          echo "OK: 无外部字体请求，robots.txt 已就位"
+          echo "OK: 无外部字体与 CDN 请求，robots.txt 已就位"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
