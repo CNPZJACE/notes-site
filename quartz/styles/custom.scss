@@ -14,9 +14,21 @@
 // 拉丁占位字体在境内经常超时，还会阻塞首屏；中文本来也走系统回退）。
 // 这里显式给一套「系统 UI 字体 + 系统中文字体」的字栈，
 // 用 :root:root 提升优先级，覆盖 Quartz 从 theme.typography 生成的变量。
-$jc-sans: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB",
-  "Microsoft YaHei", "Noto Sans CJK SC", "Source Han Sans SC", Roboto, Helvetica, Arial,
-  sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+$jc-sans:
+  system-ui,
+  -apple-system,
+  "Segoe UI",
+  "PingFang SC",
+  "Hiragino Sans GB",
+  "Microsoft YaHei",
+  "Noto Sans CJK SC",
+  "Source Han Sans SC",
+  Roboto,
+  Helvetica,
+  Arial,
+  sans-serif,
+  "Apple Color Emoji",
+  "Segoe UI Emoji";
 
 $jc-mono: ui-monospace, "Cascadia Code", Consolas, "SF Mono", Menlo, Monaco, monospace;
 

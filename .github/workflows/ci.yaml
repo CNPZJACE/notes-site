@@ -11,7 +11,7 @@ on:
 
 jobs:
   build-and-test:
-    if: ${{ github.repository == 'jackyzha0/quartz' }}
+    if: ${{ github.repository == 'CNPZJACE/notes-site' }}
     strategy:
       matrix:
         os: [windows-latest, macos-latest, ubuntu-latest]
